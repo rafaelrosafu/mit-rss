@@ -1,0 +1,9 @@
+.bundle/
+bin/
+vendor/
+_site
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+Gemfile.lock
+*.xml

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<channel>
+  <atom:link href="<%= feed.rss_url %>" rel="self" type="application/rss+xml" />
+  <title><%= feed.title %></title>
+  <link><%= feed.url %></link>
+  <language><%= feed.language %></language>
+  <copyright>&#x2117; &amp; &#xA9; 2015 <%= feed.title %></copyright>
+  <itunes:subtitle><![CDATA[<%= feed.subtitle %>]]></itunes:subtitle>
+  <itunes:author><%= feed.author %></itunes:author>
+  <itunes:summary><![CDATA[<%= feed.summary%>]]></itunes:summary>
+  <itunes:explicit>no</itunes:explicit>
+  <description><![CDATA[<%= feed.summary%>]]></description>
+  <itunes:owner>
+    <itunes:name><%= feed.author %></itunes:name>
+    <itunes:email><%= feed.email %></itunes:email>
+  </itunes:owner>
+  <itunes:image href="<%= feed.image_url %>" />
+  <itunes:category text="<%= feed.category %>">
+  </itunes:category>
+  <% episodes.each do |episode| %>
+  <item>
+    <title><%= episode.title %></title>
+    <description><![CDATA[<%= episode.description %>]]></description>
+    <itunes:image href="<%= feed.image_url %>" />
+    <itunes:author><%= feed.author %></itunes:author>
+    <itunes:subtitle><![CDATA[<%= episode.description[0..249] %>]]></itunes:subtitle>
+    <itunes:summary><![CDATA[<%= episode.description[0..249] %>]]></itunes:summary>
+    <enclosure url="<%= episode.mp3_url %>" length="<%= episode.mp3_length %>" type="audio/mpeg" />
+    <guid><%= episode.mp3_url %></guid>
+    <pubDate><%= episode.date %></pubDate>
+    <itunes:duration><%= episode.mp3_duration %></itunes:duration>
+    <itunes:keywords><%= episode.tags | join: ',' %></itunes:keywords>
+  </item>
+  <% end %>
+</channel>
+</rss>
